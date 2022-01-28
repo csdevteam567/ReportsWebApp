@@ -1,0 +1,64 @@
+﻿@model ReportsWebApp.Models.AccessRight
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AccessRight</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupReport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupReport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanReport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanReport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Database)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Database)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManageUsers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManageUsers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

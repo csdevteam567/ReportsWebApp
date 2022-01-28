@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ReportsWebApp.Models.GroupReport>
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="~/Content/DropdownBlock.css">
+
+
+<h1><strong>Group report</strong></h1>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartureCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlannedTransportations)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActualTransportations)
+        </th>
+    </tr>
+
+
+    @{
+        int step = 1;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlannedTransportations)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualTransportations)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" id="hd-@step" class="hide" />
+                <label for="hd-@step">Show details</label>
+                <div>
+                    <table class="table">
+                        @foreach (var subrow in item.Row)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelSubItem => subrow.ArrivalCity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelSubItem => subrow.PlannedTransportations)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelSubItem => subrow.ActualTransportations)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </td>
+        </tr>
+        step = step + 1;
+    }
+</table>

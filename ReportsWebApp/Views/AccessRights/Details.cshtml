@@ -1,0 +1,58 @@
+﻿@model ReportsWebApp.Models.AccessRight
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AccessRight</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupReport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupReport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanReport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanReport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Database)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Database)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManageUsers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManageUsers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

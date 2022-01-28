@@ -1,0 +1,95 @@
+﻿@model ReportsWebApp.Models.PlanReportModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "PlanActualReport", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Filter</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DepartureCities, "Departure city", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("DepartureCity", new SelectList(Model.DepartureCities), "Select", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DepartureCities, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ArrivalCities, "Arrival city", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ArrivalCity", new SelectList(Model.ArrivalCities), "Select", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ArrivalCities, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+}
+
+<h1><strong>Plan-actual report</strong></h1>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.report.First().DepartureCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.report.First().ArrivalCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.report.First().PlannedTransportations)
+        </th>
+
+        @for (int i = 1; i <= 31; i++)
+        {
+            <th>
+                @i
+            </th>
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.report.First().ActualTransportations)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.report)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlannedTransportations)
+            </td>
+
+            @foreach (var day in item.ActualPerDay)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => day)
+                </td>
+            }
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualTransportations)
+            </td>
+        </tr>
+    }
+
+</table>
